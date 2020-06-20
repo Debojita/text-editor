@@ -20,6 +20,7 @@ void erasetext(){
 
 char nam[30]; char word[100]; char buffer[1000];        //declaring variables and pointers
 FILE * f1; FILE * f2;
+int line = 0,plus = 0;
 
 
 printf("enter file name:\n");                          //file to edit
@@ -27,6 +28,9 @@ scanf("%s", nam);
 
 printf("Enter word to remove:\n");                    // input of specific word to remove
 scanf("%s", word);
+
+printf("Enter line number to edit:\n");
+scanf("%d", &line);
 
 f1 = fopen(nam,"r");                                  // opening existing file in read only mode
 f2 = fopen("new.txt", "w");                           // opening temporary file in write only mode
@@ -37,11 +41,22 @@ if(f1 == NULL || f2 == NULL){                         // fopen returns null if u
     return;
 }
 
-while((fgets(buffer,buffersize,f1)!= NULL)){        //fgets reads string from file and stores in character array until file reaches null or maximum capacity specified by buffersize
 
-    removetext(buffer,word);                    //remove occurrences of word for a line
+plus = 0;
 
-    fputs(buffer,f2);                           //copy text to new file
+while((fgets(buffer,buffersize,f1)!= NULL)){            //fgets reads string from file and stores in character array until file reaches null or maximum capacity specified by buffersize
+      plus++;
+
+      if(plus == line)
+{
+
+     removetext(buffer,word);                    //remove occurrences of word for a line
+ }
+
+     else{
+            fputs(buffer,f2);                           //copy text to new file
+
+}
 
 }
 
