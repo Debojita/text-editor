@@ -51,6 +51,8 @@ while((fgets(buffer,buffersize,f1)!= NULL)){            //fgets reads string fro
 {
 
      removetext(buffer,word);                    //remove occurrences of word for a line
+     fputs(buffer,f2);
+
  }
 
      else{
